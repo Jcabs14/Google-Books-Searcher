@@ -1,0 +1,14 @@
+.bookSearchContainer{
+    border:2px solid black;
+    margin: 20px 20px 20px 20px;
+}
+
+.textInput{
+    width: 40%;
+    margin: 14px 14px 14px 14px;
+
+}
+
+.space{
+    margin-left: 5px;
+}
