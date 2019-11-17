@@ -1,14 +1,14 @@
-import React from "./node_modules/react"
+import React from "react"
 import "./style.css"
 
-function bookSearch() {
+const bookSearch = (props) => {
     return (
-        <div className="bookSearchContainer">
+        <div className="book-Search">
             <p className="space">Book Search</p>
-            <form>
+            <form onSubmit={props.handleBookSearch}>
                 <label className="space">
                     Name of book:
-    <input type="text" name="name" className="textInput" />
+    <input type="text" name="name"  onChange={props.handleFormSubmit} className="textInput" />
                 </label>
                 <input type="submit" value="Submit"/>
             </form>
