@@ -16,7 +16,7 @@ class Results extends Component {
 
   handleBookSearch = event => {
     event.preventDefault();
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchField}`).then(res => this.setState({bookInfo: res.data}));
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchField}`).then(res => this.setState({books: [res.data.items]}));
   }
 
   handleFormSubmit = event => {
