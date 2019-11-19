@@ -5,15 +5,14 @@ const BookList = (props) => {
     return(
         <div className="list">
             {
-                props.books.map((book,i) => {
+                props.books.map((book) => {
                     return <BookCard
-                    image ={book.volumnInfo.imageLinks.thumbnail}
-                    title ={book.title}
-                    authors={book.authors}
-                    description={book.description}
-                    link={book.link}
-
-
+                    key = {book.volumeInfo.id}
+                    image ={book.volumeInfo.imageLinks.thumbnail}
+                    title ={book.volumeInfo.title}
+                    authors={book.volumeInfo.authors}
+                    description={book.volumeInfo.description}
+                    link={book.volumeInfo.link}
                     />
                 })
             }

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./style.css";
 import BookSearch from "../BookSearch";
 import axios from "axios";
+import BookList from "../BookList";
+import BookCard from "../BookCard";
+import { join } from "path";
 
 class Results extends Component {
 
@@ -10,14 +13,17 @@ class Results extends Component {
     this.state = {
       books: [],
       searchField: '',
-      bookInfo: ''
     }
   };
 
   handleBookSearch = event => {
     event.preventDefault();
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchField}`).then(res => this.setState({books: [res.data.items]}));
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchField}`).then(res => 
+    this.setState({
+      books: res.data.items
+    }));
   }
+
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -26,7 +32,24 @@ class Results extends Component {
 
   render() {
     return (
-      <BookSearch handleBookSearch={this.handleBookSearch} handleFormSubmit={this.handleFormSubmit} />
+      <div>
+        <BookSearch handleBookSearch={this.handleBookSearch} handleFormSubmit={this.handleFormSubmit} />
+        {this.state.books ? 
+          this.state.books.map(book => (
+          <BookCard
+            key={book.volumeInfo.id}
+            image={book.volumeInfo.imageLinks.thumbnail}
+            title={book.volumeInfo.title}
+            authors={book.volumeInfo.authors + join(",")}
+            description={book.volumeInfo.description}
+            link={book.volumeInfo.link}
+          />
+        ))
+        :<p>
+          "Please Search a book"
+        </p>
+        }
+      </div>
     );
   }
 }
