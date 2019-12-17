@@ -37,12 +37,13 @@ class Results extends Component {
         {this.state.books ? 
           this.state.books.map(book => (
           <BookCard
-            key={book.volumeInfo.id}
+            id={book.id}
+            key={book.id}
             image={book.volumeInfo.imageLinks.thumbnail}
             title={book.volumeInfo.title}
             authors={book.volumeInfo.authors + join(",")}
             description={book.volumeInfo.description}
-            link={book.volumeInfo.link}
+            link={book.volumeInfo.infoLink}
           />
         ))
         :<p>
